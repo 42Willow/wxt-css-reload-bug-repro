@@ -6,12 +6,14 @@ import "./some.css";
 
 export default defineContentScript({
   matches: ['*://example.com/*'],
+  cssInjectionMode: "manual", // this line doesn't seem to make a difference, unless the lines 12-17 are commented out, in which case it prevents styles from being injected
   main() {
     console.log('Hello content.');
-    let link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = browser.runtime.getURL("/assets/some.css" as any);
-    link.classList.add("schooltape");
-    document.head.appendChild(link);
+    // if the below lines are commented out (and line 9, css injection mode), the issue is fixed
+    // let link = document.createElement("link");
+    // link.rel = "stylesheet";
+    // link.href = browser.runtime.getURL("/assets/some.css" as any);
+    // link.classList.add("schooltape");
+    // document.head.appendChild(link);
   },
 });
