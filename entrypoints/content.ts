@@ -10,10 +10,10 @@ export default defineContentScript({
   main() {
     console.log('Hello content.');
     // if the below lines are commented out (and line 9, css injection mode), the issue is fixed
-    // let link = document.createElement("link");
-    // link.rel = "stylesheet";
-    // link.href = browser.runtime.getURL("/assets/some.css" as any);
-    // link.classList.add("schooltape");
-    // document.head.appendChild(link);
+    let link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = browser.runtime.getURL("/assets/some.css" as any);
+    link.classList.add("schooltape");
+    document.head.appendChild(link);
   },
 });
